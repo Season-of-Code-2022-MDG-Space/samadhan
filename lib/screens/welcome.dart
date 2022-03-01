@@ -15,7 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/thomso.png'), fit: BoxFit.cover)),
+        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/finalbg.jpg'), fit: BoxFit.cover)),
         child: Scaffold(
             backgroundColor: Colors.transparent,
             body: Stack(children: [
@@ -54,7 +54,8 @@ class _WelcomePageState extends State<WelcomePage> {
                               style: TextStyle(
                                 decorationColor: Colors.black,
                                 fontSize: 18,
-                              )))
+                              ),),
+                              )
                     ],
                   ),
                 ),

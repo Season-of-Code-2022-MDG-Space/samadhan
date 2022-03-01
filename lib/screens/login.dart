@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  bool _itshidden = true;
   @override
   Widget build(BuildContext context) {
     //Scaffold has limitation---we cant set background img using it..hence container
@@ -25,8 +27,11 @@ class LoginPageState extends State<LoginPage> {
             backgroundColor: Colors.transparent,
             body: Stack(children: [
               Container(
-                child: Text('WELCOME \n BACK!', style: TextStyle(color: Colors.pink, fontSize: 32, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, fontFamily: 'Roboto')),
-                padding: EdgeInsets.only(left: 50, right: 35, top: 100),
+                child: Text(
+                  'WELCOME \nBACK!',
+                  style: TextStyle(color: Colors.pink, fontSize: 32, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, fontFamily: 'Roboto'),
+                ),
+                padding: EdgeInsets.only(left: 25, right: 35, top: 100),
               ),
               SingleChildScrollView(
                   child: Container(
@@ -36,15 +41,41 @@ class LoginPageState extends State<LoginPage> {
                         right: 20,
                       ),
                       child: Column(children: [
-                        TextField(decoration: InputDecoration(fillColor: Colors.grey.shade500, hintText: 'Enter Your Email Id', border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)))),
+                        TextField(
+                            decoration: InputDecoration(
+                          labelText: 'Email',
+                          fillColor: Colors.grey.shade500,
+                          hintText: 'Enter Your Email Id',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                          prefixIcon: Icon(Icons.email),
+                          prefixIconColor: Colors.grey,
+                        )),
                         SizedBox(height: 15),
                         TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              fillColor: Colors.grey.shade500,
-                              hintText: 'Enter password',
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                            )),
+                          //obscureText: true,
+                          obscureText: _itshidden,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            fillColor: Colors.grey.shade500,
+                            hintText: 'Enter Your Password',
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                            prefixIcon: Icon(Icons.lock),
+                            prefixIconColor: Colors.grey,
+                            suffixIcon: IconButton(
+                                icon: Icon(_itshidden ? Icons.visibility : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    _itshidden = !_itshidden;
+                                  });
+                                }),
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        ElevatedButton(
+                            onPressed: () => Navigator.pushNamed(context, 'signup'),
+                            //Redirects to sign up page
+                            child: Text('Login', style: TextStyle(backgroundColor: Colors.blue, fontSize: 30)),
+                            style: ElevatedButton.styleFrom(fixedSize: Size.fromHeight(20)))
                       ])))
             ])));
   }
