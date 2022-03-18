@@ -1,9 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_import, prefer_const_literals_to_create_immutables, unnecessary_import
 
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:samadhan/functions/authentification.dart';
+import 'package:samadhan/screens/register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,77 +15,122 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   bool _itshidden = true;
+  final _formkey = GlobalKey<FormState>();
+  String emailid = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     //Scaffold has limitation---we cant set background img using it..hence container
-
     return Container(
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/login.png'), fit: BoxFit.cover)),
-        /*
-        Ask how to blur background image as only 1 child is allowed
-        child: BackdropFilter(
-        filter: ImageFilter.blur()),
-        */
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Stack(children: [
+      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/translogo.jpg'), fit: BoxFit.fill, opacity: 1)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Form(
+          key: _formkey,
+          child: Stack(
+            children: [
               Container(
                 child: Text(
                   'WELCOME \nBACK!',
-                  style: TextStyle(color: Colors.pink, fontSize: 32, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, fontFamily: 'Roboto'),
+                  style: TextStyle(color: Color.fromARGB(255, 71, 151, 188), fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, fontFamily: 'Roboto'),
                 ),
                 padding: EdgeInsets.only(left: 25, right: 35, top: 100),
               ),
               SingleChildScrollView(
-                  child: Container(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.45,
-                        left: 25,
-                        right: 20,
-                      ),
-                      child: Column(children: [
-                        TextField(
-                            decoration: InputDecoration(
-                          labelText: 'Email',
-                          fillColor: Colors.grey.shade500,
-                          hintText: 'Enter Your Email Id',
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                          prefixIcon: Icon(Icons.email),
-                          prefixIconColor: Colors.grey,
-                        )),
-                        SizedBox(height: 15),
-                        TextField(
-                          //obscureText: true,
-                          obscureText: _itshidden,
+                child: Container(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.45,
+                    left: 25,
+                    right: 20,
+                  ),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                          key: ValueKey('emailid'),
+                          onChanged: (value) {
+                            emailid = value;
+                          },
                           decoration: InputDecoration(
-                            labelText: 'Password',
-                            fillColor: Colors.grey.shade500,
-                            hintText: 'Enter Your Password',
+                            labelText: 'Email',
+                            fillColor: Colors.black,
+                            hintText: 'Enter Your Email Id',
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                            prefixIcon: Icon(Icons.lock),
-                            prefixIconColor: Colors.grey,
-                            suffixIcon: IconButton(
-                                icon: Icon(_itshidden ? Icons.visibility : Icons.visibility_off),
-                                onPressed: () {
-                                  setState(() {
-                                    _itshidden = !_itshidden;
-                                  });
-                                }),
+                            errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                            focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                            errorStyle: TextStyle(color: Colors.red),
+                            prefixIcon: Icon(Icons.email),
+                            prefixIconColor: Colors.black,
+                          )),
+                      SizedBox(height: 15),
+                      TextFormField(
+                        textInputAction: TextInputAction.done,
+                        key: ValueKey('pass'),
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        obscureText: _itshidden,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          fillColor: Colors.grey.shade500,
+                          hintText: 'Enter Your Password',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                          errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                          focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                          errorStyle: TextStyle(color: Colors.red),
+                          prefixIcon: Icon(Icons.lock),
+                          prefixIconColor: Colors.grey,
+                          suffixIcon: IconButton(
+                              icon: Icon(_itshidden ? Icons.visibility : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _itshidden = !_itshidden;
+                                });
+                              }),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formkey.currentState!.validate()) {
+                              _formkey.currentState!.save();
+                              signin(emailid, password);
+                              //Navigator.pushNamed(context, 'homepage');
+                            }
+                          },
+                          //Redirects to sign up page
+                          child: Text('Login', style: TextStyle(fontSize: 24)),
+                          style: ElevatedButton.styleFrom(fixedSize: Size.fromHeight(20)),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'signup');
+                        },
+                        child: Text(
+                          "Don't Have An Account? Sign Up!",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 71, 151, 188),
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 2),
-                        ElevatedButton(
-                            onPressed: () => Navigator.pushNamed(context, 'signup'),
-                            //Redirects to sign up page
-                            child: Text('Login', style: TextStyle(backgroundColor: Colors.blue, fontSize: 30)),
-                            style: ElevatedButton.styleFrom(fixedSize: Size.fromHeight(20)))
-                      ])))
-            ])));
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
-
-
-
 
 
 
