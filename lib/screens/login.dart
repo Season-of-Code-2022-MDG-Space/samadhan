@@ -9,6 +9,8 @@ import 'package:samadhan/functions/authentification.dart';
 import 'package:samadhan/screens/register.dart';
 
 class LoginPage extends StatefulWidget {
+  //String name;
+  //LoginPage({this.name});
   @override
   LoginPageState createState() => LoginPageState();
 }
@@ -22,7 +24,7 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     //Scaffold has limitation---we cant set background img using it..hence container
     return Container(
-      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/translogo.jpg'), fit: BoxFit.fill, opacity: 1)),
+      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/translogo.jpg'), fit: BoxFit.fill, opacity: 1)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Form(
@@ -98,7 +100,7 @@ class LoginPageState extends State<LoginPage> {
                             if (_formkey.currentState!.validate()) {
                               _formkey.currentState!.save();
                               signin(emailid, password);
-                              //Navigator.pushNamed(context, 'homepage');
+                              Navigator.pushNamed(context, 'homepage');
                             }
                           },
                           //Redirects to sign up page

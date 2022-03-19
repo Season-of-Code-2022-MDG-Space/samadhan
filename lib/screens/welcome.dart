@@ -16,7 +16,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/finalbg.jpg'), fit: BoxFit.contain, opacity: 0.85)),
+        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/finalbg.jpg'), fit: BoxFit.contain, opacity: 0.85)),
         child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(

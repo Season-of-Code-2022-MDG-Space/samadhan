@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_const, prefer_const_constructors, override_on_non_overriding_member, annotate_overrides
+// ignore_for_file: unnecessary_const, prefer_const_constructors, override_on_non_overriding_member, annotate_overrides, non_constant_identifier_names, use_key_in_widget_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:samadhan/functions/database_crud.dart';
 import 'package:samadhan/screens/register.dart';
 
 class OtherPage extends StatefulWidget {
-  const OtherPage({Key? key}) : super(key: key);
+  //String value;
 
   @override
   State<OtherPage> createState() => _OtherPageState();
@@ -16,13 +16,13 @@ class _OtherPageState extends State<OtherPage> {
   @override
   CollectionReference complaints = FirebaseFirestore.instance.collection('Other Complaints');
 
-  String complaint = '';
+  String Icomplaint = '', Fcomplaint = '', Pcomplaint = '', Ecomplaint = '', Ocomplaint = '';
   final _formkey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         image: const DecorationImage(
-          image: const AssetImage('assets/other.jpeg'),
+          image: const AssetImage('assets/images/other.jpeg'),
           opacity: 1,
           fit: BoxFit.fill,
         ),
@@ -72,7 +72,7 @@ class _OtherPageState extends State<OtherPage> {
                       },
                       onSaved: (value) {
                         setState(() {
-                          complaint = value!;
+                          Ocomplaint = value!;
                         });
                       },
                       decoration: InputDecoration(
@@ -92,7 +92,10 @@ class _OtherPageState extends State<OtherPage> {
                       _formkey.currentState!.save();
                       // await createIC(
                       // );
+                      //await update(docName, Icomplaint, Fcomplaint, Pcomplaint, Ecomplaint, Ocomplaint)
+                      await update("Chinmay Nagpal", Icomplaint, Fcomplaint, Pcomplaint, Ecomplaint, Ocomplaint);
                       final snackBar = SnackBar(
+                        duration: Duration(days: 1),
                         content: const Text('Your Complaint has been registered successfully!'),
                         action: SnackBarAction(
                           label: 'HomePage',

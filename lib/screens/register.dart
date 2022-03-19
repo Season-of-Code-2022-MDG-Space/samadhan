@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Container(
           margin: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/translogo.jpg'), fit: BoxFit.fill, opacity: 0.5),
+            image: DecorationImage(image: AssetImage('assets/images/translogo.jpg'), fit: BoxFit.fill, opacity: 0.5),
           ),
           child: SingleChildScrollView(
             child: Column(
@@ -149,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   onSaved: (value) {
                     setState(() {
-                      name = value!;
+                      bhawan = value!;
                     });
                   },
                   decoration: InputDecoration(
@@ -286,11 +286,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       // 'Phone Number': phone,)
                       //.then((value) => print('User has been added successfully'));
                       final snackBar = SnackBar(
+                        duration: Duration(minutes: 10),
                         content: const Text('Signing up Successful!'),
                         action: SnackBarAction(
                           label: 'Login',
                           onPressed: () {
-                            Navigator.pushNamed(context, 'login');
+                            Navigator.pushNamed(context, 'login',);
                           },
                         ),
                       );

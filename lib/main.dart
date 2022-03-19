@@ -6,12 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/login.dart';
 import 'package:samadhan/screens/register.dart';
-import 'package:samadhan/screens/registered.dart';
 import 'package:samadhan/screens/welcome.dart';
 //import 'package:samadhan/screens/food.dart';
 import 'package:samadhan/screens/other.dart';
 import 'package:samadhan/screens/water.dart';
 import 'package:samadhan/functions/database_crud.dart';
+import 'package:samadhan/screens/personalinfo.dart';
+import 'package:samadhan/screens/aboutus.dart';
+import 'package:samadhan/screens/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,15 +34,14 @@ class MyApp extends StatelessWidget {
         'signup': (context) => RegisterPage(),
         'login': (context) => LoginPage(),
         'water': (context) => WelcomePage(), //Remember this!
-        'internet': (context) => OtherPage(),
-        //'food': (context) => FoodPage(),
-        'registered': (context) => ComplaintRegistered(),
-        //'homepage': (context) => HomePage(),
+        //'internet': (context) => InternetPage(),
+        'homepage': (context) => HomePage(),
         'welcome': (context) => WelcomePage(),
-        'other': (context) => OtherPage(),
-        // 'pf': (context) => PerInf(),
-        // 'au': (context) => AboutUs(),
+        'others': (context) => OtherPage(),
+        'pf': (context) => PerInf(),
+        'au': (context) => AboutUs(),
         // 'main': (context) => MyApp(),
+        //'food': (context) => FoodPage(),
       },
       title: 'Samadhan',
       theme: ThemeData(
