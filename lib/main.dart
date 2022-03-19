@@ -3,17 +3,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/login.dart';
 import 'package:samadhan/screens/register.dart';
 import 'package:samadhan/screens/welcome.dart';
-//import 'package:samadhan/screens/food.dart';
 import 'package:samadhan/screens/other.dart';
 import 'package:samadhan/screens/water.dart';
 import 'package:samadhan/functions/database_crud.dart';
 import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
 import 'package:samadhan/screens/homepage.dart';
+import 'package:samadhan/screens/internet.dart';
+import 'package:samadhan/screens/electricity.dart';
+import 'package:samadhan/screens/plumbing.dart';
+import 'package:samadhan/screens/Food.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,28 +29,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //home: OtherPage(),
-      initialRoute: FirebaseAuth.instance.currentUser == null ? 'welcome' : 'homepage',
-      routes: {
-        'signup': (context) => RegisterPage(),
-        'login': (context) => LoginPage(),
-        'water': (context) => WelcomePage(), //Remember this!
-        //'internet': (context) => InternetPage(),
-        'homepage': (context) => HomePage(),
-        'welcome': (context) => WelcomePage(),
-        'others': (context) => OtherPage(),
-        'pf': (context) => PerInf(),
-        'au': (context) => AboutUs(),
-        // 'main': (context) => MyApp(),
-        //'food': (context) => FoodPage(),
-      },
-      title: 'Samadhan',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Color.fromARGB(255, 71, 151, 188),
-        fontFamily: 'Roboto',
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        //home: OtherPage(),
+        initialRoute: FirebaseAuth.instance.currentUser == null ? 'welcome' : 'homepage',
+        routes: {
+          'signup': (context) => RegisterPage(),
+          'login': (context) => LoginPage(),
+          'water': (context) => WelcomePage(), //Remember this!
+          //'internet': (context) => InternetPage(),
+          'homepage': (context) => HomePage(),
+          'welcome': (context) => WelcomePage(),
+          'others': (context) => OtherPage(),
+          'pf': (context) => PerInf(),
+          'au': (context) => AboutUs(),
+          // 'main': (context) => MyApp(),
+          'food': (context) => FoodPage(),
+        },
+        title: 'Samadhan',
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Color.fromARGB(255, 71, 151, 188),
+          fontFamily: 'Roboto',
+        ));
   }
 }
