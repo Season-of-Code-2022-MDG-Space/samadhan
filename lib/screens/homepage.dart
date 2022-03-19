@@ -1,13 +1,18 @@
 // ignore_for_file: unused_import, non_constant_identifier_names, prefer_const_constructors,prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, sized_box_for_whitespace
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
 
+FirebaseAuth auth = FirebaseAuth.instance;
 alertDialog(BuildContext context) {
   // This is the ok button
   Widget Yes = TextButton(
     child: Text("Yes"),
     onPressed: () {
+      Future<void> _signOut() async {
+        await FirebaseAuth.instance.signOut();
+      }
       Navigator.pushNamed(context, 'login');
     },
   );
@@ -45,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
           title: Center(child: Text("Register Your Complain", textDirection: TextDirection.ltr, style: TextStyle(color: Colors.white))),
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Colors.purple,
         ),
         drawer: Container(
           child: Drawer(
@@ -111,12 +116,14 @@ class _HomePageState extends State<HomePage> {
                         spreadRadius: 2.0,
                       ),
                     ],
-                    image: DecorationImage(image: AssetImage('assets/images/electricity.jpg'), opacity: 0.75, fit: BoxFit.fill)),
+                    image: DecorationImage(image: AssetImage('assets/images/electricity.jpg'), opacity: 1, fit: BoxFit.fill)),
                 child: TextButton(
-                  onPressed: () {},
-                  child: Text("Electicity",
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'electricity');
+                  },
+                  child: Text("Electricity",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 23, 139, 110),
+                        color: Colors.yellow[800],
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
@@ -140,9 +147,11 @@ class _HomePageState extends State<HomePage> {
                         spreadRadius: 2.0,
                       ),
                     ],
-                    image: DecorationImage(image: AssetImage('assets/images/plumbing.jpg'), opacity: 0.75, fit: BoxFit.fill)),
+                    image: DecorationImage(image: AssetImage('assets/images/plumbing.jpg'), opacity: 1, fit: BoxFit.fill)),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'plumbing');
+                  },
                   child: Text("Plumbing",
                       style: TextStyle(
                         color: Color.fromARGB(255, 13, 144, 177),
@@ -173,7 +182,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                     image: DecorationImage(image: AssetImage('assets/images/food.jpg'), fit: BoxFit.fill)),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'food');
+                  },
                   child: Text("Food",
                       style: TextStyle(
                         color: Color.fromARGB(255, 153, 80, 19),
@@ -200,9 +211,11 @@ class _HomePageState extends State<HomePage> {
                         spreadRadius: 2.0,
                       ),
                     ],
-                    image: DecorationImage(image: AssetImage('assets/images/internet.jpg'), opacity: 0.6, fit: BoxFit.fill)),
+                    image: DecorationImage(image: AssetImage('assets/images/internet.jpg'), opacity: 1, fit: BoxFit.fill)),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'internet');
+                  },
                   child: Text("Internet",
                       style: TextStyle(
                         color: Color.fromARGB(255, 50, 245, 79),
@@ -231,42 +244,10 @@ class _HomePageState extends State<HomePage> {
                         spreadRadius: 2.0,
                       ),
                     ],
-                    image: DecorationImage(image: AssetImage('assets/images/lost.jpg'), opacity: 01, fit: BoxFit.fill)),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text('',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 212, 24, 24),
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                      )),
-                ),
-                margin: EdgeInsets.all(10),
-                height: 180,
-                width: 180,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromARGB(255, 99, 95, 95),
-                        offset: const Offset(
-                          5.0,
-                          5.0,
-                        ), //Offset
-                        blurRadius: 10.0,
-                        spreadRadius: 2.0,
-                      ),
-                    ],
                     image: DecorationImage(image: AssetImage('assets/images/other.jpeg'), opacity: 1, fit: BoxFit.fill)),
                 child: TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, 'others');
-                    //Navigator.of(context).push(MaterialPageRoute(
-                    //builder: (context) => OtherPage(name: value),
-                    //));
                   },
                   child: Text("Others",
                       style: TextStyle(

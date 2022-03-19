@@ -7,7 +7,6 @@ import 'package:samadhan/screens/login.dart';
 import 'package:samadhan/screens/register.dart';
 import 'package:samadhan/screens/welcome.dart';
 import 'package:samadhan/screens/other.dart';
-import 'package:samadhan/screens/water.dart';
 import 'package:samadhan/functions/database_crud.dart';
 import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
@@ -35,15 +34,15 @@ class MyApp extends StatelessWidget {
         routes: {
           'signup': (context) => RegisterPage(),
           'login': (context) => LoginPage(),
-          'water': (context) => WelcomePage(), //Remember this!
-          //'internet': (context) => InternetPage(),
+          'internet': (context) => InternetPage(),
           'homepage': (context) => HomePage(),
           'welcome': (context) => WelcomePage(),
           'others': (context) => OtherPage(),
           'pf': (context) => PerInf(),
           'au': (context) => AboutUs(),
-          // 'main': (context) => MyApp(),
           'food': (context) => FoodPage(),
+          'electricity': (context) => ElectricityPage(),
+          'plumbing': (context) => PlumbingPage(),
         },
         title: 'Samadhan',
         theme: ThemeData(

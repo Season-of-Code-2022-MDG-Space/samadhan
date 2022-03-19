@@ -291,7 +291,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         action: SnackBarAction(
                           label: 'Login',
                           onPressed: () {
-                            Navigator.pushNamed(context, 'login',);
+                            Navigator.pushNamed(
+                              context,
+                              'login',
+                            );
                           },
                         ),
                       );

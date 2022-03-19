@@ -1,15 +1,17 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:samadhan/functions/database_crud.dart';
 
 //void main() => runApp(const MyApp());
 
 class PlumbingPage extends StatelessWidget {
   const PlumbingPage({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'PLUMBING ISSUES',
       home: Container(
         decoration: const BoxDecoration(
@@ -43,98 +45,101 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  String plocation = '', pcomplaint = '';
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 70,
-          ),
-          TextFormField(
-            maxLines: null,
-            // expands: true,
-            decoration: InputDecoration(
-              labelText: 'LOCATION',
-              //labelstyle: ,
-              fillColor: Colors.grey.shade500,
-              hintText: 'Room No & Bhavan name/Location in campus',
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.circular(15)),
-              focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.circular(15)),
-              errorStyle: TextStyle(color: Colors.red),
-              prefixIcon: Icon(Icons.add_location),
-              prefixIconColor: Colors.grey,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 70,
             ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a location ';
-              }
-              return null;
-            },
-          ),
-          SizedBox(
-            height: 90,
-          ),
-          TextFormField(
-            maxLines: null,
-            decoration: InputDecoration(
-              labelText: 'COMPLAINT',
-              //labelstyle: ,
-              fillColor: Colors.grey.shade500,
-              hintText: ' Enter complaint',
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.circular(15)),
-              focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.circular(15)),
-              errorStyle: TextStyle(color: Colors.red),
-              prefixIcon: Icon(
-                Icons.water_drop_rounded,
-                color: Color.fromARGB(255, 13, 179, 230),
+            TextFormField(
+              maxLines: null,
+              // expands: true,
+              decoration: InputDecoration(
+                labelText: 'LOCATION',
+                //labelstyle: ,
+                fillColor: Colors.grey.shade500,
+                hintText: 'Room No & Bhavan name/Location in campus',
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                errorStyle: TextStyle(color: Colors.red),
+                prefixIcon: Icon(Icons.add_location),
+                prefixIconColor: Colors.grey,
               ),
-              prefixIconColor: Colors.grey,
+              validator: (value) {
+                if (value == '') {
+                  return 'Please enter a location ';
+                }
+                return null;
+              },
+              onSaved: (value) {
+                setState(() {
+                  plocation = value!;
+                });
+              },
             ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please write briefly about the issue  ';
-              }
-              return null;
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Center(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 41, 9, 221)),
+            SizedBox(
+              height: 90,
+            ),
+            TextFormField(
+              maxLines: null,
+              decoration: InputDecoration(
+                labelText: 'COMPLAINT',
+                //labelstyle: ,
+                fillColor: Colors.grey.shade500,
+                hintText: ' Enter complaint',
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                errorStyle: TextStyle(color: Colors.red),
+                prefixIcon: Icon(
+                  Icons.water_drop_sharp,
+                  //color: Colors.blueGrey,
                 ),
-                onPressed: () {
-                  final snackBar = SnackBar(
-                    content: const Text('A technician is on his/her way!'),
-                  );
-
-                  // Find the ScaffoldMessenger in the widget tree
-                  // and use it to show a SnackBar.
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-                child: const Text('SUBMIT '),
+                prefixIconColor: Colors.blue,
               ),
+              validator: (String? value) {
+                if (value == '') {
+                  return 'Please write briefly about the issue  ';
+                }
+                return null;
+              },
+              onSaved: (value) {
+                setState(() {
+                  pcomplaint = value!;
+                });
+              },
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 41, 9, 221)),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      await updatePC("Chinmay Nagpal", pcomplaint, plocation);
+                      final snackBar = SnackBar(
+                        duration: Duration(seconds: 10),
+                        content: const Text('Your Complaint has been registered successfully!'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  },
+                  child: const Text('SUBMIT '),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

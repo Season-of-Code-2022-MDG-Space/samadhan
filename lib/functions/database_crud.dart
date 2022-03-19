@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 //CollectionReference users = FirebaseFirestore.instance.collection('Users and their complaints');
 create(String docName, name, emailid, bhawan, phoneno, enrolmentno) async {
   await FirebaseFirestore.instance.collection('Users').doc(docName).set({
@@ -14,25 +13,54 @@ create(String docName, name, emailid, bhawan, phoneno, enrolmentno) async {
   }).then((value) => print("User signed up successfully"));
 }
 
-update(String docName, Icomplaint, Fcomplaint, Pcomplaint, Ecomplaint, Ocomplaint) async {
-  await FirebaseFirestore.instance.collection('Users').doc(docName).update({
-    'Internet Complaint': Icomplaint,
-    'Food Complaint': Fcomplaint,
-    'Plumbing Complaint': Pcomplaint,
-    'Electricity Complaint': Ecomplaint,
-    'Other Complaint': Ocomplaint,
-  });
+updateIC(
+  String docName,
+  icomplaint,
+  ilocation,
+) async {
+  await FirebaseFirestore.instance.collection('Users').doc(docName).update({'Internet Complaint': icomplaint, 'Internet Complaint Location': ilocation});
   //think of how to get multiple complaints.
   print('Complaints Updated');
 }
 
+updateFC(
+  String docName,
+  fcomplaint,
+  flocation,
+) async {
+  await FirebaseFirestore.instance.collection('Users').doc(docName).update({'Food Complaint': fcomplaint, 'Food Complaint Location': flocation});
+  //think of how to get multiple complaints.
+  print('Complaints Updated');
+}
 
+updatePC(
+  String docName,
+  pcomplaint,
+  plocation,
+) async {
+  await FirebaseFirestore.instance.collection('Users').doc(docName).update({'Plumbing Complaint': pcomplaint, 'Plumbing Complaint Location': plocation});
+  //think of how to get multiple complaints.
+  print('Complaints Updated');
+}
 
+updateEC(
+  String docName,
+  ecomplaint,
+  elocation,
+) async {
+  await FirebaseFirestore.instance.collection('Users').doc(docName).update({'Electricity Complaint': ecomplaint, 'Electricity Complaint Location': elocation});
+  //think of how to get multiple complaints.
+  print('Complaints Updated');
+}
 
-
-
-
-
+updateOC(
+  String docName,
+  ocomplaint,
+) async {
+  await FirebaseFirestore.instance.collection('Users').doc(docName).update({'Other Complaint': ocomplaint});
+  //think of how to get multiple complaints.
+  print('Complaints Updated');
+}
 
 // CollectionReference Icomplaints = FirebaseFirestore.instance.collection('Internet Complaints');
 // createIC(String name, bhawan, phoneno, complaint) async {

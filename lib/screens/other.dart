@@ -16,7 +16,7 @@ class _OtherPageState extends State<OtherPage> {
   @override
   CollectionReference complaints = FirebaseFirestore.instance.collection('Other Complaints');
 
-  String Icomplaint = '', Fcomplaint = '', Pcomplaint = '', Ecomplaint = '', Ocomplaint = '';
+  String ocomplaint = '';
   final _formkey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Container(
@@ -72,7 +72,7 @@ class _OtherPageState extends State<OtherPage> {
                       },
                       onSaved: (value) {
                         setState(() {
-                          Ocomplaint = value!;
+                          ocomplaint = value!;
                         });
                       },
                       decoration: InputDecoration(
@@ -90,19 +90,10 @@ class _OtherPageState extends State<OtherPage> {
                   onPressed: () async {
                     if (_formkey.currentState!.validate()) {
                       _formkey.currentState!.save();
-                      // await createIC(
-                      // );
-                      //await update(docName, Icomplaint, Fcomplaint, Pcomplaint, Ecomplaint, Ocomplaint)
-                      await update("Chinmay Nagpal", Icomplaint, Fcomplaint, Pcomplaint, Ecomplaint, Ocomplaint);
+                      await updateOC("Chinmay Nagpal", ocomplaint);
                       final snackBar = SnackBar(
-                        duration: Duration(days: 1),
+                        duration: Duration(seconds: 10),
                         content: const Text('Your Complaint has been registered successfully!'),
-                        action: SnackBarAction(
-                          label: 'HomePage',
-                          onPressed: () {
-                            Navigator.pushNamed(context, 'homepage');
-                          },
-                        ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
