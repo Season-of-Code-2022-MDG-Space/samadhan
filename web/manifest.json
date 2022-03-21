@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
+    "name": "samadhan",
+    "short_name": "samadhan",
+=======
     "name": "flutter_application_1",
     "short_name": "flutter_application_1",
+>>>>>>> main
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
