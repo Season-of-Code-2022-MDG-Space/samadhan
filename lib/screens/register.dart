@@ -2,6 +2,7 @@
 // ignore: prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samadhan/functions/authentification.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   CollectionReference users = FirebaseFirestore.instance.collection('Users');
   final _formkey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
   bool _itshidden = true;
   String remailid = '';
   String rpassword = '';
@@ -236,69 +238,67 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  textInputAction: TextInputAction.done,
-                  key: ValueKey('confirmpass'),
-                  obscureText: _itshidden,
-                  //ASkkk
-                  validator: (value) {
-                    if (rconfirmpassword.compareTo(rpassword) != 0) {
-                      return "Entered passwords do not match";
-                    } else {
-                      return null;
-                    }
-                  },
-                  onSaved: (value) {
-                    setState(() {
-                      rconfirmpassword = value!;
-                    });
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Confirm Password',
-                    fillColor: Colors.grey.shade500,
-                    hintText: 'Enter Your Password again',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                    errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
-                    focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
-                    errorStyle: TextStyle(color: Colors.red),
-                    prefixIcon: Icon(Icons.vpn_key),
-                    prefixIconColor: Colors.grey,
-                    suffixIcon: IconButton(
-                        icon: Icon(_itshidden ? Icons.visibility : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _itshidden = !_itshidden;
-                          });
-                        }),
-                  ),
-                ),
+                // TextFormField(
+                //   textInputAction: TextInputAction.done,
+                //   key: ValueKey('confirmpass'),
+                //   obscureText: _itshidden,
+                //   //ASkkk
+                //   validator: (value) {
+                //     if (value == '') {
+                //       return 'This field cannot be left blank';
+                //     } else if (value != rpassword) {
+                //       return "Entered passwords do not match";
+                //     } else {
+                //       return null;
+                //     }
+                //   },
+                //   onSaved: (value) {
+                //     setState(() {
+                //       rconfirmpassword = value!;
+                //     });
+                //   },
+                //   decoration: InputDecoration(
+                //     labelText: 'Confirm Password',
+                //     fillColor: Colors.grey.shade500,
+                //     hintText: 'Enter Your Password again',
+                //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                //     errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                //     focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
+                //     errorStyle: TextStyle(color: Colors.red),
+                //     prefixIcon: Icon(Icons.vpn_key),
+                //     prefixIconColor: Colors.grey,
+                //     suffixIcon: IconButton(
+                //         icon: Icon(_itshidden ? Icons.visibility : Icons.visibility_off),
+                //         onPressed: () {
+                //           setState(() {
+                //             _itshidden = !_itshidden;
+                //           });
+                //         }),
+                //   ),
+                // ),
                 SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () async {
                     if (_formkey.currentState!.validate()) {
-                      _formkey.currentState!.save();
-                      signup(remailid, rpassword);
-                      create(name, name, remailid, bhawan, phone, enrolmentno);
-                      // 'Name': name,
-                      // 'Email Id': emailid,
-                      // 'Bhawan Name': bhawan,
-                      // 'Enrolment Number': enrolmentno,
-                      // 'Phone Number': phone,)
-                      //.then((value) => print('User has been added successfully'));
-                      final snackBar = SnackBar(
-                        duration: Duration(minutes: 10),
-                        content: const Text('Signing up Successful!'),
-                        action: SnackBarAction(
-                          label: 'Login',
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              'login',
-                            );
-                          },
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      _formkey.currentState!.save;
+                      final signupstatus = await signup(remailid, rpassword);
+                      if (signupstatus) {
+                        final snackBar = SnackBar(
+                          duration: Duration(minutes: 10),
+                          content: const Text('Signing up Successful!'),
+                          action: SnackBarAction(
+                            label: 'Login',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                'login',
+                              );
+                            },
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        await create(name, name, remailid, bhawan, phone, enrolmentno);
+                      }
                     }
                   },
                   child: Text(

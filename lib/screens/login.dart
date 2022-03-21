@@ -4,8 +4,10 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:samadhan/functions/authentification.dart';
+import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +22,7 @@ class LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
   String emailid = '';
   String password = '';
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     //Scaffold has limitation---we cant set background img using it..hence container
@@ -54,6 +57,16 @@ class LoginPageState extends State<LoginPage> {
                           onChanged: (value) {
                             emailid = value;
                           },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return ("Email ID cannot be left blank");
+                            }
+                            // reg expression for email validation
+                            if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+                              return ("Please Enter a valid email");
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
                             labelText: 'Email',
                             fillColor: Colors.black,
@@ -71,6 +84,13 @@ class LoginPageState extends State<LoginPage> {
                         key: ValueKey('pass'),
                         onChanged: (value) {
                           password = value;
+                        },
+                        validator: (value) {
+                          if (value.toString().isEmpty) {
+                            return 'Password cannot be left blank';
+                          } else {
+                            return null;
+                          }
                         },
                         obscureText: _itshidden,
                         decoration: InputDecoration(
@@ -96,11 +116,13 @@ class LoginPageState extends State<LoginPage> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formkey.currentState!.validate()) {
-                              _formkey.currentState!.save();
-                              signin(emailid, password);
-                              Navigator.pushNamed(context, 'homepage');
+                              _formkey.currentState!.save;
+                              final result = await signin(emailid, password);
+                              if (result) {
+                                Navigator.pushNamed(context, 'homepage');
+                              }
                             }
                           },
                           //Redirects to sign up page
@@ -133,6 +155,7 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 }
+
 
 
 
