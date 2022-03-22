@@ -280,7 +280,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formkey.currentState!.validate()) {
-                      _formkey.currentState!.save;
+                      _formkey.currentState!.save();
                       final signupstatus = await signup(remailid, rpassword);
                       if (signupstatus) {
                         final snackBar = SnackBar(
@@ -297,7 +297,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        await create(name, name, remailid, bhawan, phone, enrolmentno);
+                        await create(name, remailid, bhawan, phone, enrolmentno);
                       }
                     }
                   },

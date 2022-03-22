@@ -112,7 +112,8 @@ class LoginPageState extends State<LoginPage> {
                               }),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 3),
+                      
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: ElevatedButton(

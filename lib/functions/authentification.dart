@@ -36,8 +36,8 @@ Future<bool> signup(String email, String password) async {
     } else if (e.code == 'email-already-in-use') {
       Fluttertoast.showToast(msg: "An account already exists for that email");
     } else {
-      Fluttertoast.showToast(msg: "Something went wrong");
-      print(e.code);
+      Fluttertoast.showToast(msg: "Something went wrong with signup");
+      print(e.message);
     }
   }
   return false;

@@ -5,7 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 final _auth = FirebaseAuth.instance;
-Future<void> create(String docName, name, emailid, bhawan, phoneno, enrolmentno) async {
+Future<void> create(name, emailid, bhawan, phoneno, enrolmentno) async {
+  print(_auth.currentUser!.uid);
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).set({
     'Name': name,
     'Email Id': emailid,
@@ -44,7 +45,9 @@ updateEC(
   ecomplaint,
   elocation,
 ) async {
+  print(_auth.currentUser!.uid);
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).update({'Electricity Complaint': ecomplaint, 'Electricity Complaint Location': elocation});
+
   print('Complaints Updated');
 }
 
