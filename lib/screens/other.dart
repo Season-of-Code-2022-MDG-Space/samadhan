@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_const, prefer_const_constructors, override_on_non_overriding_member, annotate_overrides, non_constant_identifier_names, use_key_in_widget_constructors
+// ignore_for_file: unnecessary_const, prefer_const_constructors, override_on_non_overriding_member, annotate_overrides, non_constant_identifier_names, use_key_in_widget_constructors, unused_import
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +90,7 @@ class _OtherPageState extends State<OtherPage> {
                   onPressed: () async {
                     if (_formkey.currentState!.validate()) {
                       _formkey.currentState!.save();
-                      await updateOC("Chinmay Nagpal", ocomplaint);
+                      await updateOC(ocomplaint);
                       final snackBar = SnackBar(
                         duration: Duration(seconds: 10),
                         content: const Text('Your Complaint has been registered successfully!'),

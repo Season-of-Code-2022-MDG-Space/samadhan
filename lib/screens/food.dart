@@ -124,7 +124,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      await updateFC("Chinmay Nagpal", fcomplaint, flocation);
+                      await updateFC(fcomplaint, flocation);
                       final snackBar = SnackBar(
                         duration: Duration(seconds: 10),
                         content: const Text('Your Complaint has been registered successfully!'),

@@ -1,18 +1,16 @@
 // ignore_for_file: unused_import, non_constant_identifier_names, prefer_const_constructors,prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, sized_box_for_whitespace
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
+import 'package:samadhan/functions/authentification.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 alertDialog(BuildContext context) {
   // This is the ok button
   Widget Yes = TextButton(
     child: Text("Yes"),
-    onPressed: () {
-      Future<void> _signOut() async {
-        await FirebaseAuth.instance.signOut();
-      }
+    onPressed: () async {
+      await signOut();
       Navigator.pushNamed(context, 'login');
     },
   );
@@ -64,23 +62,6 @@ class _HomePageState extends State<HomePage> {
                 child: Center(child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 25))),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.account_circle, color: Colors.black, size: 40),
-              title: const Text('Personal Information', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 18)),
-              onTap: () {
-                Navigator.pushNamed(context, 'pf');
-              },
-            ),
-            // ListTile(
-            //   leading: Icon(Icons.report_gmailerrorred_outlined,
-            //       color: Colors.red, size: 40),
-            //   title: const Text('Report an Issue',
-            //       style: TextStyle(
-            //           color: Color.fromARGB(255, 0, 0, 0), fontSize: 18)),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
             ListTile(
               leading: Icon(
                 Icons.account_circle_outlined,
@@ -142,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -175,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -206,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -239,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),

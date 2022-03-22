@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^3.1.6
   firebase_database:
   shared_preferences:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:
