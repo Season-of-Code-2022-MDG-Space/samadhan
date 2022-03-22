@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/login.dart';
-import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/register.dart';
 
 Future<bool> signup(String email, String password) async {

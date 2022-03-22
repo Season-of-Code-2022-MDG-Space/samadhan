@@ -9,7 +9,6 @@ import 'package:samadhan/screens/register.dart';
 import 'package:samadhan/screens/welcome.dart';
 import 'package:samadhan/screens/other.dart';
 import 'package:samadhan/functions/database_crud.dart';
-import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
 import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/internet.dart';
@@ -39,7 +38,6 @@ class MyApp extends StatelessWidget {
         'homepage': (context) => HomePage(),
         'welcome': (context) => WelcomePage(),
         'others': (context) => OtherPage(),
-        'pf': (context) => PerInf(),
         'au': (context) => AboutUs(),
         'food': (context) => FoodPage(),
         'electricity': (context) => ElectricityPage(),

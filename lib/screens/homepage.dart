@@ -1,7 +1,6 @@
 // ignore_for_file: unused_import, non_constant_identifier_names, prefer_const_constructors,prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, sized_box_for_whitespace
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
 import 'package:samadhan/functions/authentification.dart';
 
@@ -64,13 +63,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.account_circle, color: Colors.black, size: 40),
-              title: const Text('Personal Information', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 18)),
-              onTap: () {
-                Navigator.pushNamed(context, 'pf');
-              },
-            ),
-            ListTile(
               leading: Icon(
                 Icons.account_circle_outlined,
                 size: 40,
@@ -131,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), 
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -164,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), 
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -195,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), 
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -228,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), 
+                        ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
