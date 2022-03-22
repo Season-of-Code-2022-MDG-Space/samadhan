@@ -113,7 +113,12 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(height: 3),
-                      
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'forgotpass');
+                        },
+                        child: Text('Forgot Password?'),
+                      ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: ElevatedButton(

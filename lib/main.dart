@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:samadhan/screens/forgotpass.dart';
 import 'package:samadhan/screens/login.dart';
 import 'package:samadhan/screens/register.dart';
 import 'package:samadhan/screens/welcome.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           'food': (context) => FoodPage(),
           'electricity': (context) => ElectricityPage(),
           'plumbing': (context) => PlumbingPage(),
+          'forgotpass' :(context) => ForgotPassword(),
         },
         title: 'Samadhan',
         theme: ThemeData(
