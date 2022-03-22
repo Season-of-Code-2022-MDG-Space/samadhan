@@ -238,44 +238,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                // TextFormField(
-                //   textInputAction: TextInputAction.done,
-                //   key: ValueKey('confirmpass'),
-                //   obscureText: _itshidden,
-                //   //ASkkk
-                //   validator: (value) {
-                //     if (value == '') {
-                //       return 'This field cannot be left blank';
-                //     } else if (value != rpassword) {
-                //       return "Entered passwords do not match";
-                //     } else {
-                //       return null;
-                //     }
-                //   },
-                //   onSaved: (value) {
-                //     setState(() {
-                //       rconfirmpassword = value!;
-                //     });
-                //   },
-                //   decoration: InputDecoration(
-                //     labelText: 'Confirm Password',
-                //     fillColor: Colors.grey.shade500,
-                //     hintText: 'Enter Your Password again',
-                //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                //     errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
-                //     focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
-                //     errorStyle: TextStyle(color: Colors.red),
-                //     prefixIcon: Icon(Icons.vpn_key),
-                //     prefixIconColor: Colors.grey,
-                //     suffixIcon: IconButton(
-                //         icon: Icon(_itshidden ? Icons.visibility : Icons.visibility_off),
-                //         onPressed: () {
-                //           setState(() {
-                //             _itshidden = !_itshidden;
-                //           });
-                //         }),
-                //   ),
-                // ),
                 SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () async {
@@ -283,20 +245,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       _formkey.currentState!.save();
                       final signupstatus = await signup(remailid, rpassword);
                       if (signupstatus) {
-                        final snackBar = SnackBar(
-                          duration: Duration(minutes: 10),
-                          content: const Text('Signing up Successful!'),
-                          action: SnackBarAction(
-                            label: 'Login',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                'login',
-                              );
-                            },
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         await create(name, remailid, bhawan, phone, enrolmentno);
                       }
                     }
