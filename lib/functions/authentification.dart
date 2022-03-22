@@ -64,3 +64,8 @@ Future<bool> signin(String email, password) async {
     return false;
   }
 }
+
+Future<void> signOut() async {
+  await FirebaseAuth.instance.signOut();
+  
+}

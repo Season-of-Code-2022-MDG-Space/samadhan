@@ -3,16 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:samadhan/screens/personalinfo.dart';
 import 'package:samadhan/screens/aboutus.dart';
+import 'package:samadhan/functions/authentification.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 alertDialog(BuildContext context) {
   // This is the ok button
   Widget Yes = TextButton(
     child: Text("Yes"),
-    onPressed: () {
-      Future<void> _signOut() async {
-        await FirebaseAuth.instance.signOut();
-      }
+    onPressed: () async {
+      await signOut();
       Navigator.pushNamed(context, 'login');
     },
   );
