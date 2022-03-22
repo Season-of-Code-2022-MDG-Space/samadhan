@@ -15,7 +15,7 @@ import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/internet.dart';
 import 'package:samadhan/screens/electricity.dart';
 import 'package:samadhan/screens/plumbing.dart';
-import 'package:samadhan/screens/Food.dart';
+import 'package:samadhan/screens/food.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

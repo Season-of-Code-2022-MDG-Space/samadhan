@@ -93,7 +93,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 labelText: 'COMPLAINT',
                 //labelstyle: ,
                 fillColor: Colors.grey.shade500,
-                hintText: ' Enter complaint',
+                hintText: ' Enter your complaint',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                 errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
                 focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red), borderRadius: BorderRadius.circular(15)),
