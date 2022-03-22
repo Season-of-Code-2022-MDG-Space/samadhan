@@ -14,7 +14,6 @@ Future<void> create(name, emailid, bhawan, phoneno, enrolmentno) async {
     'Enrolment Number': enrolmentno,
     'Phone Number': phoneno,
   });
-  print("User credentials created");
 }
 
 updateIC(
@@ -22,7 +21,6 @@ updateIC(
   ilocation,
 ) async {
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).update({'Internet Complaint': icomplaint, 'Internet Complaint Location': ilocation});
-  print('Complaints Updated');
 }
 
 updateFC(
@@ -30,7 +28,6 @@ updateFC(
   flocation,
 ) async {
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).update({'Food Complaint': fcomplaint, 'Food Complaint Location': flocation});
-  print('Complaints Updated');
 }
 
 updatePC(
@@ -38,7 +35,6 @@ updatePC(
   plocation,
 ) async {
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).update({'Plumbing Complaint': pcomplaint, 'Plumbing Complaint Location': plocation});
-  print('Complaints Updated');
 }
 
 updateEC(
@@ -47,63 +43,10 @@ updateEC(
 ) async {
   print(_auth.currentUser!.uid);
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).update({'Electricity Complaint': ecomplaint, 'Electricity Complaint Location': elocation});
-
-  print('Complaints Updated');
 }
 
 updateOC(
   ocomplaint,
 ) async {
   await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).update({'Other Complaint': ocomplaint});
-  print('Complaints Updated');
 }
-
-// CollectionReference Icomplaints = FirebaseFirestore.instance.collection('Internet Complaints');
-// createIC(String name, bhawan, phoneno, complaint) async {
-//   await FirebaseFirestore.instance.collection('Internet Complaints').doc().set({
-//     'Name': name,
-//     'Bhawan Name': bhawan,
-//     'Phone Number': phoneno,
-//     'Complaint': complaint,
-//   }).then((value) => print("Internet Complaint registered successfully"));
-// }
-
-// CollectionReference Ecomplaints = FirebaseFirestore.instance.collection('Electricity Complaints');
-// createEC(String name, bhawan, phoneno, complaint) async {
-//   await FirebaseFirestore.instance.collection('Water Complaints').doc().set({
-//     'Name': name,
-//     'Bhawan Name': bhawan,
-//     'Phone Number': phoneno,
-//     'Complaint': complaint,
-//   }).then((value) => print("Electricity Complaint registered successfully"));
-// }
-
-// CollectionReference Wcomplaints = FirebaseFirestore.instance.collection('Water Complaints');
-// createWC(String name, bhawan, phoneno, complaint) async {
-//   await FirebaseFirestore.instance.collection('Water Complaints').doc().set({
-//     'Name': name,
-//     'Bhawan Name': bhawan,
-//     'Phone Number': phoneno,
-//     'Complaint': complaint,
-//   }).then((value) => print("Water related Complaint registered successfully"));
-// }
-
-// CollectionReference Fcomplaints = FirebaseFirestore.instance.collection('Food Complaints');
-// createFC(String name, bhawan, phoneno, complaint) async {
-//   await FirebaseFirestore.instance.collection('Food Complaints').doc().set({
-//     'Name': name,
-//     'Bhawan Name': bhawan,
-//     'Phone Number': phoneno,
-//     'Complaint': complaint,
-//   }).then((value) => print("Food Complaint registered successfully"));
-// }
-
-// CollectionReference othercomplaints = FirebaseFirestore.instance.collection('Other Complaints');
-// createOC(String name, bhawan, phoneno, complaint) async {
-//   await FirebaseFirestore.instance.collection('Other Complaints').doc().set({
-//     'Name': name,
-//     'Bhawan Name': bhawan,
-//     'Phone Number': phoneno,
-//     'Complaint': complaint,
-//   }).then((value) => print("Complaint registered successfully"));
-// }

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:samadhan/functions/database_crud.dart';
 import 'package:samadhan/screens/register.dart';
 
-//void main() => runApp(const MyApp());
-
 class ElectricityPage extends StatelessWidget {
   const ElectricityPage({Key? key}) : super(key: key);
 
@@ -28,7 +26,6 @@ class ElectricityPage extends StatelessWidget {
             backgroundColor: Colors.deepOrange[500],
             shadowColor: Color.fromARGB(255, 102, 100, 97),
             title: Text('ELECTRICITY ISSUES '),
-            //centerTitle: true,
           ),
           body: const MyStatefulWidget(),
         ),
@@ -62,7 +59,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'LOCATION',
-                //labelstyle: ,
                 fillColor: Colors.grey.shade500,
                 hintText: 'Room No & Bhavan name/Location in campus',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
@@ -90,7 +86,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'COMPLAINT',
-                //labelstyle: ,
                 fillColor: Colors.grey.shade500,
                 hintText: 'Enter your complaint',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),

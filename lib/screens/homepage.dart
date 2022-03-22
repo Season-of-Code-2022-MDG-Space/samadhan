@@ -70,16 +70,6 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, 'pf');
               },
             ),
-            // ListTile(
-            //   leading: Icon(Icons.report_gmailerrorred_outlined,
-            //       color: Colors.red, size: 40),
-            //   title: const Text('Report an Issue',
-            //       style: TextStyle(
-            //           color: Color.fromARGB(255, 0, 0, 0), fontSize: 18)),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
             ListTile(
               leading: Icon(
                 Icons.account_circle_outlined,
@@ -141,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ), 
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -174,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ), 
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -205,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ), 
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
@@ -238,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                         offset: const Offset(
                           5.0,
                           5.0,
-                        ), //Offset
+                        ), 
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),

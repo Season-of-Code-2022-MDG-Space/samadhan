@@ -25,32 +25,33 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        //home: OtherPage(),
-        initialRoute: FirebaseAuth.instance.currentUser == null ? 'welcome' : 'homepage',
-        routes: {
-          'signup': (context) => RegisterPage(),
-          'login': (context) => LoginPage(),
-          'internet': (context) => InternetPage(),
-          'homepage': (context) => HomePage(),
-          'welcome': (context) => WelcomePage(),
-          'others': (context) => OtherPage(),
-          'pf': (context) => PerInf(),
-          'au': (context) => AboutUs(),
-          'food': (context) => FoodPage(),
-          'electricity': (context) => ElectricityPage(),
-          'plumbing': (context) => PlumbingPage(),
-          'forgotpass' :(context) => ForgotPassword(),
-        },
-        title: 'Samadhan',
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Color.fromARGB(255, 71, 151, 188),
-          fontFamily: 'Roboto',
-        ));
+      debugShowCheckedModeBanner: false,
+      initialRoute: FirebaseAuth.instance.currentUser == null ? 'welcome' : 'homepage',
+      //This is to automatically get user to homepage if he signed in before and didn't logout
+      routes: {
+        'signup': (context) => RegisterPage(),
+        'login': (context) => LoginPage(),
+        'internet': (context) => InternetPage(),
+        'homepage': (context) => HomePage(),
+        'welcome': (context) => WelcomePage(),
+        'others': (context) => OtherPage(),
+        'pf': (context) => PerInf(),
+        'au': (context) => AboutUs(),
+        'food': (context) => FoodPage(),
+        'electricity': (context) => ElectricityPage(),
+        'plumbing': (context) => PlumbingPage(),
+        'forgotpass': (context) => ForgotPassword(),
+      },
+      title: 'Samadhan',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Color.fromARGB(255, 71, 151, 188),
+        fontFamily: 'Roboto',
+      ),
+    );
   }
 }

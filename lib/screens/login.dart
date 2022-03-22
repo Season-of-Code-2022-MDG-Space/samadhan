@@ -11,8 +11,6 @@ import 'package:samadhan/screens/homepage.dart';
 import 'package:samadhan/screens/register.dart';
 
 class LoginPage extends StatefulWidget {
-  //String name;
-  //LoginPage({this.name});
   @override
   LoginPageState createState() => LoginPageState();
 }
@@ -25,7 +23,6 @@ class LoginPageState extends State<LoginPage> {
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    //Scaffold has limitation---we cant set background img using it..hence container
     return Container(
       decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/translogo.jpg'), fit: BoxFit.fill, opacity: 1)),
       child: Scaffold(
@@ -127,11 +124,11 @@ class LoginPageState extends State<LoginPage> {
                               _formkey.currentState!.save;
                               final result = await signin(emailid, password);
                               if (result) {
+                                //Redirects home page if login successfull
                                 Navigator.pushNamed(context, 'homepage');
                               }
                             }
                           },
-                          //Redirects to sign up page
                           child: Text('Login', style: TextStyle(fontSize: 24)),
                           style: ElevatedButton.styleFrom(fixedSize: Size.fromHeight(20)),
                         ),

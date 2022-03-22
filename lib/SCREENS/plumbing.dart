@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:samadhan/functions/database_crud.dart';
 
-//void main() => runApp(const MyApp());
-
 class PlumbingPage extends StatelessWidget {
   const PlumbingPage({Key? key}) : super(key: key);
 
@@ -27,7 +25,6 @@ class PlumbingPage extends StatelessWidget {
             backgroundColor: Color.fromARGB(255, 11, 188, 241),
             shadowColor: Color.fromARGB(255, 102, 100, 97),
             title: Text('PLUMBING ISSUES '),
-            //centerTitle: true,
           ),
           body: const MyStatefulWidget(),
         ),
@@ -59,10 +56,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
             TextFormField(
               maxLines: null,
-              // expands: true,
               decoration: InputDecoration(
                 labelText: 'LOCATION',
-                //labelstyle: ,
                 fillColor: Colors.grey.shade500,
                 hintText: 'Room No & Bhavan name/Location in campus',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
@@ -91,7 +86,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               maxLines: null,
               decoration: InputDecoration(
                 labelText: 'COMPLAINT',
-                //labelstyle: ,
                 fillColor: Colors.grey.shade500,
                 hintText: ' Enter your complaint',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
@@ -100,7 +94,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 errorStyle: TextStyle(color: Colors.red),
                 prefixIcon: Icon(
                   Icons.water_drop_sharp,
-                  //color: Colors.blueGrey,
                 ),
                 prefixIconColor: Colors.blue,
               ),
